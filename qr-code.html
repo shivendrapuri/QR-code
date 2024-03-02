@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>qr-code</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background-color: rgb(211, 211, 211);
+            display: flex;
+            justify-content: center;
+            height: 600px;
+        }
+        .qr-container {
+            border-radius: 10px;
+            border: 1px solid rgb(255, 255, 255);
+            padding: 20px;
+            width: 580px;
+            background-color: white;
+            height: 400px;
+            margin-top: 80px;
+            box-shadow: 8px 13px 14px 0px rgb(190, 188, 188);
+            border: none;
+        }
+
+        #qr-input {
+            width: 95%;
+            padding: 10px;
+            display: block;
+            font-size: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            justify-content: center;
+
+        }
+        .heading {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        #qr-btn {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            background-image: linear-gradient(rgb(32, 128, 32), lightgreen 80px);
+            font-size: 18px;
+            color: white;
+            margin-bottom: 20px;
+        }
+        #qr-img {
+            display: block;
+            width: 30%;
+            margin: auto;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="qr-container">
+        <h1 class="heading">QR code generator</h1>
+        <input type="text" placeholder="paste you url" id="qr-input">
+        <button id="qr-btn">Click Here to Generate QR code</button>
+        <img src="" alt="" id="qr-img">
+    </div>
+</body>
+
+</html>
+<script>
+    const qrinput = document.getElementById("qr-input");
+    const qrimg = document.getElementById("qr-img");
+    const qrbtn = document.getElementById("qr-btn");
+    qrbtn.addEventListener("click", () => {
+        const inputValue = qrinput.value;
+        if (!inputValue) {
+            alert("enter a valid url");
+            return
+        }
+        else {
+            document.getElementById("qr-img").src = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + inputValue;
+            document.getElementById("qr-img").alt = 'QR code for ' + inputValue;
+
+        }
+    })
+</script>
